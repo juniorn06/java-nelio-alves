@@ -1,26 +1,26 @@
 package application;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Program {
 
     public static void main(String[] args) {
 
-        String path = "C:\\Users\\TI\\Documents\\Java\\Workspace\\in.txt";
+        String[] lines = new String[]{ "Good morning", "Good Afternoon", "Good night"};
 
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) { 
-            String line = br.readLine();
+        String path = "C:\\Users\\TI\\Documents\\Java\\Workspace\\out.txt";
 
-            while (line != null) {
-                System.out.println(line);
-                line = br.readLine();
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
+            for (String line : lines){
+                bw.write(line);
+                bw.newLine(); // Acrescenta uma quebra de linha.
             }
         }
         catch (IOException e){
-            System.out.println("Error : " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
